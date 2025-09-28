@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Studio Pro - Advanced Web Development Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading Firebase Studio Pro...</p>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fab fa-firebase"></i>
+                <span>Firebase Studio Pro</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#database" class="nav-link" data-section="database">
+                    <i class="fas fa-database"></i> Database
+                </a>
+                <a href="#auth" class="nav-link" data-section="auth">
+                    <i class="fas fa-users"></i> Authentication
+                </a>
+                <a href="#hosting" class="nav-link" data-section="hosting">
+                    <i class="fas fa-cloud"></i> Hosting
+                </a>
+                <a href="#analytics" class="nav-link" data-section="analytics">
+                    <i class="fas fa-chart-line"></i> Analytics
+                </a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/32x32/4285f4/ffffff?text=U" alt="User" class="profile-img">
+                    <span class="profile-name">John Doe</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <div class="section-header">
+                <h1>Project Dashboard</h1>
+                <p>Manage your Firebase projects with ease</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="active-users">1,234</h3>
+                        <p>Active Users</p>
+                        <span class="stat-change positive">+12%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="db-reads">45.6K</h3>
+                        <p>Database Reads</p>
+                        <span class="stat-change positive">+8%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="storage-used">2.3GB</h3>
+                        <p>Storage Used</p>
+                        <span class="stat-change negative">+15%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="functions-calls">12.8K</h3>
+                        <p>Function Calls</p>
+                        <span class="stat-change positive">+22%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>New user registered</span>
+                            <time>2 minutes ago</time>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-edit"></i>
+                            <span>Database updated</span>
+                            <time>5 minutes ago</time>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-upload"></i>
+                            <span>File uploaded to storage</span>
+                            <time>12 minutes ago</time>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Performance Chart</h3>
+                    <canvas id="performance-chart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Database Section -->
+        <section id="database" class="content-section">
+            <div class="section-header">
+                <h1>Firestore Database</h1>
+                <p>Manage your NoSQL database collections</p>
+            </div>
+            
+            <div class="database-controls">
+                <button class="btn btn-primary" id="add-collection">
+                    <i class="fas fa-plus"></i> Add Collection
+                </button>
+                <button class="btn btn-secondary" id="import-data">
+                    <i class="fas fa-upload"></i> Import Data
+                </button>
+                <button class="btn btn-secondary" id="export-data">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+            </div>
+
+            <div class="database-explorer">
+                <div class="collections-panel">
+                    <h3>Collections</h3>
+                    <div class="collection-list" id="collection-list">
+                        <div class="collection-item active" data-collection="users">
+                            <i class="fas fa-folder"></i>
+                            <span>users</span>
+                            <span class="doc-count">156 docs</span>
+                        </div>
+                        <div class="collection-item" data-collection="products">
+                            <i class="fas fa-folder"></i>
+                            <span>products</span>
+                            <span class="doc-count">89 docs</span>
+                        </div>
+                        <div class="collection-item" data-collection="orders">
+                            <i class="fas fa-folder"></i>
+                            <span>orders</span>
+                            <span class="doc-count">234 docs</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="documents-panel">
+                    <h3>Documents</h3>
+                    <div class="document-list" id="document-list">
+                        <!-- Documents will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authentication Section -->
+        <section id="auth" class="content-section">
+            <div class="section-header">
+                <h1>Authentication</h1>
+                <p>Manage user authentication and security</p>
+            </div>
+            
+            <div class="auth-methods">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email/Password</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Allow users to sign up and sign in with email and password</p>
+                </div>
+                
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <i class="fab fa-google"></i>
+                        <h3>Google</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Enable Google Sign-In for your application</p>
+                </div>
+                
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <i class="fab fa-facebook"></i>
+                        <h3>Facebook</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Allow users to sign in with their Facebook account</p>
+                </div>
+            </div>
+
+            <div class="users-table">
+                <h3>Recent Users</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Email</th>
+                            <th>Provider</th>
+                            <th>Created</th>
+                            <th>Last Sign In</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        <!-- Users will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Hosting Section -->
+        <section id="hosting" class="content-section">
+            <div class="section-header">
+                <h1>Hosting</h1>
+                <p>Deploy and manage your web applications</p>
+            </div>
+            
+            <div class="hosting-status">
+                <div class="status-card">
+                    <div class="status-indicator active"></div>
+                    <h3>Production Site</h3>
+                    <p>https://my-app-12345.web.app</p>
+                    <div class="status-actions">
+                        <button class="btn btn-sm btn-primary">View Site</button>
+                        <button class="btn btn-sm btn-secondary">Settings</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deployment-history">
+                <h3>Deployment History</h3>
+                <div class="deployment-list">
+                    <div class="deployment-item">
+                        <div class="deployment-status success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="deployment-info">
+                            <h4>Production Deploy</h4>
+                            <p>Deployed from main branch</p>
+                            <time>2 hours ago</time>
+                        </div>
+                        <div class="deployment-actions">
+                            <button class="btn btn-sm btn-outline">View</button>
+                            <button class="btn btn-sm btn-outline">Rollback</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="content-section">
+            <div class="section-header">
+                <h1>Analytics</h1>
+                <p>Track user engagement and app performance</p>
+            </div>
+            
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>User Engagement</h3>
+                    <canvas id="engagement-chart" width="300" height="150"></canvas>
+                </div>
+                
+                <div class="analytics-card">
+                    <h3>Page Views</h3>
+                    <canvas id="pageviews-chart" width="300" height="150"></canvas>
+                </div>
+                
+                <div class="analytics-card">
+                    <h3>Geographic Distribution</h3>
+                    <div class="geo-stats">
+                        <div class="geo-item">
+                            <span class="country">United States</span>
+                            <span class="percentage">45%</span>
+                        </div>
+                        <div class="geo-item">
+                            <span class="country">United Kingdom</span>
+                            <span class="percentage">22%</span>
+                        </div>
+                        <div class="geo-item">
+                            <span class="country">Canada</span>
+                            <span class="percentage">18%</span>
+                        </div>
+                        <div class="geo-item">
+                            <span class="country">Germany</span>
+                            <span class="percentage">15%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Modal Title</h3>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
